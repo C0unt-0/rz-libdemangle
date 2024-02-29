@@ -16,5 +16,6 @@
 ///			of next errors: eDemanglerErrUnsupportedMangling, ...
 ///////////////////////////////////////////////////////////////////////////////
 EDemanglerErr microsoft_demangle(SDemangler *demangler, char **demangled_name);
+EDemanglerErr coff_demangle(SDemangler *demangler, char **demangled_name);
 
 #endif // MICROSOFT_DEMANGLE_H

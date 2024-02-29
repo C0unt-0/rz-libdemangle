@@ -2575,3 +2575,23 @@ microsoft_demangle_err:
 	dem_list_free(abbr.types);
 	return err;
 }
+
+EDemanglerErr coff_demangle(SDemangler *demangler, char **demangled_name) {
+	EDemanglerErr err = eDemanglerErrOK;
+	//	DemListIter *it = NULL;
+	//	char *tmp = NULL;
+
+	// TODO: need refactor... maybe remove the static variable somewhere?
+	SAbbrState abbr;
+	abbr.types = dem_list_newf(free);
+	abbr.names = dem_list_newf(free);
+
+	*demangled_name = dem_str_newf("Hello, %s!", "World");
+
+	printf("microsoft_demangle\n");
+
+	// microsoft_demangle_err:
+	// 	dem_list_free(abbr.names);
+	// 	dem_list_free(abbr.types);
+	return err;
+}

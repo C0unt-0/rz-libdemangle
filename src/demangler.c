@@ -10,7 +10,8 @@ typedef enum EManglingType {
 	eManglingMicrosoft = 0,
 	eManglingUnsupported,
 	eManglingUnknown,
-	eManglingTypeMax
+	eManglingTypeMax,
+	eManglingTypeCOFF,
 } EManglingType;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,6 +26,9 @@ static EManglingType get_mangling_type(char *sym) {
 	case '.':
 	case '?':
 		mangling_type = eManglingMicrosoft;
+		break;
+	case '@':
+		mangling_type = eManglingTypeCOFF;
 		break;
 	default:
 		break;
@@ -61,7 +65,9 @@ EDemanglerErr init_demangler(SDemangler *demangler, char *sym) {
 	demangle_func demangle_funcs[] = {
 		microsoft_demangle, // Microsoft demangling function
 		0, // Unsupported demangling
-		0 // Unknown demangling
+		0, // Unknown demangling
+		0,
+		coff_demangle, // COFF demangling function
 	};
 
 	if (demangler == 0) {
@@ -70,6 +76,7 @@ EDemanglerErr init_demangler(SDemangler *demangler, char *sym) {
 	}
 
 	mangling_type = get_mangling_type(sym);
+	printf("mangling_type: %d\n", mangling_type);
 	switch (mangling_type) {
 	case eManglingUnsupported:
 		err = eDemanglerErrUnsupportedMangling;

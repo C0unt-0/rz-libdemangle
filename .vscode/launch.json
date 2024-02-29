@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Run Meson Test (libdemangle)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/builddir/test_msvc",
+			"args": [],
+			"cwd": "${workspaceFolder}/builddir",
+			"stopAtEntry": false,
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb",
+			"preLaunchTask": "build"
+		}
+	]
+}
